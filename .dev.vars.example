@@ -1,0 +1,3 @@
+# Identidad simulada del entorno de desarrollo local de Sites.
+# Este archivo NO se usa como configuración de producción.
+OWNER_EMAIL="seedy@sites.test"
