@@ -1,0 +1,4 @@
+import {emitKeypressEvents} from 'node:readline';import {passwordHash} from '../auth.mjs';
+if(!process.stdin.isTTY){console.error('Ejecuta este comando desde una terminal interactiva.');process.exit(1)}
+emitKeypressEvents(process.stdin);process.stdin.setRawMode(true);process.stdout.write('Nueva contraseña (mínimo 14 caracteres; no se mostrará): ');let password='';
+process.stdin.on('keypress',async(str,key)=>{if(key?.ctrl&&key.name==='c'){process.stdin.setRawMode(false);process.exit(130)}if(key?.name==='return'){process.stdin.setRawMode(false);process.stdin.pause();try{console.log('\nADMIN_PASSWORD_HASH='+await passwordHash(password))}catch(e){console.error('\n'+e.message);process.exitCode=1}}else if(key?.name==='backspace')password=password.slice(0,-1);else if(str&&!key?.ctrl&&password.length<257)password+=str});

@@ -1,0 +1,6 @@
+{
+ "name":"bitacora-selfhost", "version":"1.0.0", "private":true, "type":"module", "engines":{"node":">=24"},
+ "scripts":{"build":"vite build","start":"node server.mjs","test":"node --test tests/*.test.mjs","password":"node scripts/password.mjs","import":"node scripts/import.mjs"},
+ "dependencies":{"react":"19.2.6","react-dom":"19.2.6"},
+ "devDependencies":{"vite":"8.0.13","typescript":"5.9.3"}
+}

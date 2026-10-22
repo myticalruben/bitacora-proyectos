@@ -1,0 +1,22 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: selfhost/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORT: "3000"
+      HOST: "0.0.0.0"
+      DATABASE_PATH: /app/selfhost/data/bitacora.sqlite
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-3000}:3000"
+    volumes:
+      - bitacora_data:/app/selfhost/data
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  bitacora_data:
