@@ -103,6 +103,22 @@ Cambiar `ADMIN_PASSWORD_HASH` y recrear el contenedor invalida las sesiones ante
 
 Todavía no se configura dominio, router ni túnel. No redirijas puertos hacia Proxmox ni hacia la base de datos. Al publicar, colocaremos un proxy HTTPS o un túnel delante de la aplicación, cambiaremos `APP_ORIGIN` al dominio HTTPS y restringiremos `BIND_ADDRESS` a la dirección apropiada. El proxy debe preservar la cabecera Host del dominio público. Las cookies seguras y la comprobación de origen dependen de esa configuración.
 
+## Añadir los proyectos usb-automount y nvim al portafolio
+
+Las fichas de ambos repositorios, con resumen, tecnologías, decisiones, instrucciones y límites documentados, se incluyen en `content/portfolio-projects.json`.
+
+Después de actualizar el repositorio, ejecuta desde `selfhost/`:
+
+```bash
+sudo docker compose build
+sudo docker compose run --rm --no-deps web node scripts/add-portfolio-projects.mjs
+sudo docker compose up -d
+```
+
+El comando añade ambos proyectos como publicados en la base SQLite del volumen existente. No requiere contraseña en la línea de comandos. No modifica otros registros y, si encuentra el mismo identificador o título, conserva el proyecto existente. Volver a ejecutarlo no duplica las entradas ni restablece proyectos borrados o editados. Después puedes editar su documentación desde `/admin`.
+
+Las fichas reflejan el código revisado el 23 de octubre de 2026; no se sincronizan automáticamente cuando cambian los repositorios originales. Las comprobaciones de Nix declaradas y las pruebas referidas por los READMEs se distinguen de las pruebas realizadas para esta página.
+
 ## Desarrollo y comprobaciones
 
 Fuera de Docker necesitas Node.js 24:

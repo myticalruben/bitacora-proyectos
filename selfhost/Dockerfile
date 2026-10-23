@@ -17,6 +17,7 @@ WORKDIR /app/selfhost
 COPY --from=builder /app/selfhost/dist ./dist
 COPY selfhost/server.mjs selfhost/auth.mjs selfhost/database.mjs ./
 COPY selfhost/scripts ./scripts
+COPY selfhost/content ./content
 RUN mkdir -p data && chown -R node:node /app
 USER node
 EXPOSE 3000
