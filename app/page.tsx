@@ -1,6 +1,6 @@
 import { ProjectList } from "../components/project-list";
 export default function Home() {
-  return;
+  return (
   <>
     <section className="hero">
       <div>
@@ -86,5 +86,6 @@ export default function Home() {
         </div>
       </div>
     </section>
-  </>;
+  </>
+  );
 }
